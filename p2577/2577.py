@@ -13,4 +13,4 @@ def solution():
 	for i in s:
 		num[int(i)] += 1
 	printNum(num)
-solution()
+solution() 
