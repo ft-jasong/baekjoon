@@ -2,5 +2,11 @@
 	"python.linting.pylintEnabled": true,
 	"python.linting.flake8Enabled": false,
 	"python.linting.enabled": true,
-	"python.pythonPath": "/Users/jasong/.brew/bin/python3"
+	"python.pythonPath": "/Users/jasong/.brew/bin/python3",
+	"files.associations": {
+		"string": "cpp",
+		"iosfwd": "cpp",
+		"iostream": "cpp",
+		"vector": "cpp"
+	}
 }
