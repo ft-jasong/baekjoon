@@ -52,9 +52,9 @@ int solution(int n)
 
 int main(void)
 {
-    int    n;
-    
-    scanf("%d", &n);
-    printf("%d", solution(n));
-    return (0);
+	 int	 n;
+	 
+	 scanf("%d", &n);
+	 printf("%d", solution(n));
+	 return (0);
 }
