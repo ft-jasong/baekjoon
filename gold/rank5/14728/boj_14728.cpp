@@ -23,7 +23,7 @@ int	main(void) {
 	for (int i = 1; i <= num; i++) {
 		for (int j = 1; j <= maxTime; j++) {
 			if (j >= timeCost[i])
-				dp[i][j] = max(score[i] + dp[i - 1][j - timeCost[i]], dp[i - 1][j]);
+				dp[i][j] = max(score[i] + dp[i - 1][j - timeCost[i]], dp[i - 1][j]);	
 			else
 				dp[i][j] = dp[i - 1][j];
 		}
