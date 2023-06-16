@@ -31,6 +31,7 @@ int	main(void) {
 		sort(v_sorted.begin(), v_sorted.end());
 		int	count = 0;
 		for (int i = 0; i < length; i++) {
+			
 			if (v[i] == v_sorted[count])
 				count++;
 		}
