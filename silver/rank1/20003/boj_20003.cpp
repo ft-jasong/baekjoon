@@ -1,13 +1,13 @@
 #include <iostream>
-#include <vector>
 #include <utility>
 
 using namespace std;
 
-typedef pair<int, int>	Item;
+int	denominator[50]; // 분모
+int	numerator[50]; // 분자
 
-int	gcd(int a, int b) {
-	int	r;	
+int	GCD(int a, int b) {
+	int	r;
 
 	while (b) {
 		r = a % b;
@@ -17,40 +17,25 @@ int	gcd(int a, int b) {
 	return (a);
 }
 
-void	abbreviation(Item& item) {
-	int	gcd_num;
-
-	gcd_num = gcd(item.first, item.second);
-	item.first = item.first / gcd_num;
-	item.second = item.second / gcd_num;
+int	LCM(int a, int b) {
+	return (a * b / GCD(a, b));
 }
 
 int	main(void) {
-	int	itemNum;
-	int	a;
-	int	b;
-	vector<Item>	items;
-	int		mother;
-	int		son;
-	Item	ans;
-	Item	tmp;
+	int	item_num;
+	int	deno_lcm;
+	int	num_gcd;
 
-	cin >> itemNum;
-	items.reserve(itemNum);
-	mother = 1;
-	for (int i = 0; i < itemNum; i++) {
-		cin >> a >> b;
-		tmp = make_pair(a, b);
-		abbreviation(tmp);
-		items.push_back(tmp);
-		mother = mother * tmp.second / gcd(mother, tmp.second);
+	cin >> item_num;
+	deno_lcm = 1;
+	for (int i = 0; i < item_num; i++) {
+		cin >> numerator[i] >> denominator[i];
+		deno_lcm = LCM(deno_lcm, denominator[i]);
 	}
-	son = items[0].first * (mother / items[0].second);
-	for (int i = 1; i < itemNum; i++) {
-		son = gcd(son, items[i].first * (mother / items[i].second));
+	num_gcd = (deno_lcm / denominator[0]) * numerator[0];
+	for (int i = 0; i < item_num; i++) {
+		num_gcd = GCD(num_gcd, (deno_lcm / denominator[i]) * numerator[i]);
 	}
-	ans = make_pair(son, mother);
-	abbreviation(ans);
-	cout << ans.first << ' ' << ans.second << '\n';
+	cout << num_gcd / GCD(num_gcd, deno_lcm) << ' ' << deno_lcm / GCD(num_gcd, deno_lcm) << '\n';
 	return (0);
 }
