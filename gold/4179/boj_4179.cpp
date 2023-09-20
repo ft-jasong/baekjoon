@@ -52,7 +52,8 @@ int bfs(int pos_r, int pos_c) {
   pair<pair<int, int>, int> info;
   int cur_r;
   int cur_c;
-  int move;
+  int pre_move = 1;
+  int cur_move = 1;
 
   info = make_pair(make_pair(pos_r, pos_c), 1);
   q.push(info);
@@ -60,26 +61,28 @@ int bfs(int pos_r, int pos_c) {
   while (!q.empty()) {
     cur_r = q.front().first.first;
     cur_c = q.front().first.second;
-    move = q.front().second;
+    cur_move = q.front().second;
     q.pop();
     if (isEnd(cur_r, cur_c))
-      return (move);
-    update_fire();
+      return (cur_move);
+    if (pre_move < cur_move)
+        update_fire();
+    pre_move = cur_move;
     if (cur_r - 1 > 0 && !player_visited[cur_r - 1][cur_c] && board[cur_r - 1][cur_c] == '.') {
       player_visited[cur_r - 1][cur_c] = 1;
-      q.push(make_pair(make_pair(cur_r - 1, cur_c), move + 1));
+      q.push(make_pair(make_pair(cur_r - 1, cur_c), cur_move + 1));
     }
     if (cur_r + 1 <= row && !player_visited[cur_r + 1][cur_c] && board[cur_r + 1][cur_c] == '.') {
       player_visited[cur_r + 1][cur_c] = 1;
-      q.push(make_pair(make_pair(cur_r + 1, cur_c), move + 1));
+      q.push(make_pair(make_pair(cur_r + 1, cur_c), cur_move + 1));
     }
     if (cur_c - 1 > 0 && !player_visited[cur_r][cur_c - 1] && board[cur_r][cur_c - 1] == '.') {
       player_visited[cur_r][cur_c - 1] = 1;
-      q.push(make_pair(make_pair(cur_r, cur_c - 1), move + 1));
+      q.push(make_pair(make_pair(cur_r, cur_c - 1), cur_move + 1));
     }
     if (cur_c + 1 <= col && !player_visited[cur_r][cur_c + 1] && board[cur_r][cur_c + 1] == '.') {
       player_visited[cur_r][cur_c + 1] = 1;
-      q.push(make_pair(make_pair(cur_r, cur_c + 1), move + 1));
+      q.push(make_pair(make_pair(cur_r, cur_c + 1), cur_move + 1));
     }
   }
   return (-1);
