@@ -10,4 +10,5 @@ int main(void) {
 	int party_cnt;
 
 	cin >> man_cnt >> party_cnt;
+	
 }
